@@ -1,0 +1,683 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>오자르 eaujar — 유리 너머의 작은 자연</title>
+<meta name="description" content="오자르(eaujar)는 비바리움, 테라리움, 정글플랜츠, 양서·파충류 사육 환경을 위한 관리 솔루션 브랜드입니다.">
+<meta property="og:title" content="오자르 eaujar — 유리 너머의 작은 자연">
+<meta property="og:description" content="작은 유리 안에 하나의 생태계를 담습니다.">
+<meta property="og:image" content="img/w_mist.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root{
+  --bg:#ececea; --paper:#f6f6f4; --white:#fff; --ink:#111512; --ink-2:#4a514c; --muted:#8b918c;
+  --line:rgba(17,21,18,.14); --moss:#6ba31c; --moss-2:#9bd04a; --water:#3fa9dd;
+  --forest:#0c2416; --forest-2:#123321; --r:28px; --r-sm:18px; --max:1240px;
+  --sans:"Outfit","Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:400;line-height:1.7;letter-spacing:-.01em;-webkit-font-smoothing:antialiased;word-break:keep-all}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 28px}
+section{padding:120px 0}
+.meta{font-size:12px;line-height:1.45;color:var(--muted);letter-spacing:0}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border:1px solid var(--line);border-radius:999px;font-size:12px;line-height:1.2;color:var(--ink-2);white-space:nowrap}
+.pill.solid{background:var(--ink);border-color:var(--ink);color:#fff}
+.pill.light{border-color:rgba(255,255,255,.45);color:rgba(255,255,255,.9)}
+.pill.green{background:var(--moss);border-color:var(--moss);color:#fff}
+.btn{display:inline-flex;align-items:center;gap:12px;padding:8px 22px 8px 8px;border-radius:999px;font-size:14px;font-weight:500;background:var(--white);color:var(--ink);border:1px solid var(--line);transition:.2s}
+.btn i{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--ink);color:#fff;font-style:normal;font-size:15px;transition:.2s}
+.btn:hover i{background:var(--moss)}
+.btn.dark{background:var(--ink);color:#fff;border-color:var(--ink)}
+.btn.dark i{background:var(--moss)}
+.btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.5)}
+.btn.ghost i{background:#fff;color:var(--ink)}
+.h2{font-size:clamp(32px,4.4vw,58px);font-weight:600;letter-spacing:-.04em;line-height:1.15}
+.h2 .g{color:var(--moss)}
+.lead{color:var(--ink-2);font-size:16px;max-width:560px}
+
+/* header */
+header{position:fixed;top:12px;left:0;right:0;z-index:50;padding:0 12px;pointer-events:none}
+.bar{pointer-events:auto;max-width:calc(var(--max) + 40px);margin:0 auto;height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 10px 0 22px;border-radius:999px;transition:.3s;color:#fff}
+header.scrolled .bar{background:rgba(246,246,244,.82);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);color:var(--ink);box-shadow:0 6px 24px rgba(0,0,0,.06)}
+.bar .logo img{height:30px}
+.bar .logo .d{display:none}
+header.scrolled .logo .w{display:none}header.scrolled .logo .d{display:block}
+.menu{display:flex;gap:26px;font-size:13px}
+.menu a{opacity:.8}.menu a:hover{opacity:1}
+.bar .store{font-size:13px;padding:10px 18px;border-radius:999px;background:#fff;color:var(--ink);font-weight:500}
+header.scrolled .bar .store{background:var(--ink);color:#fff}
+.burger{display:none;background:none;border:0;color:inherit;font-size:22px;cursor:pointer;padding:8px 10px}
+
+/* hero */
+.hero{padding:12px}
+.hero-box{position:relative;height:calc(100svh - 24px);min-height:600px;border-radius:var(--r);overflow:hidden;color:#fff;background:#111 url(img/w_mist.jpg) center/cover}
+.hero-box::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,.15) 55%,rgba(0,0,0,.72) 100%),rgba(0,0,0,.35)}
+.giant-logo{position:absolute;left:50%;top:max(96px,12%);transform:translateX(-50%);width:min(36vw,440px);z-index:1;pointer-events:none;filter:drop-shadow(0 6px 30px rgba(0,0,0,.35))}
+header:not(.scrolled) .bar .logo{opacity:0;pointer-events:none}
+.bar .logo{transition:opacity .3s}
+.hero .side-meta{position:absolute;z-index:2}
+.hero .sm-1{left:32px;top:50%}
+.hero .sm-2{right:32px;top:50%;text-align:right}
+.hero .side-meta .meta{color:rgba(255,255,255,.78)}
+.hero-bottom{position:absolute;z-index:2;left:32px;right:32px;bottom:32px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px}
+.hero h1{font-size:clamp(40px,6vw,84px);font-weight:500;letter-spacing:-.05em;line-height:1.02}
+.hero .hero-eyebrow{font-family:Outfit,sans-serif;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.78);margin-bottom:16px}
+.hero .hero-copy{margin-top:18px;font-size:15px;line-height:1.7;color:rgba(255,255,255,.82);max-width:520px;word-break:keep-all}
+.hero .sub{display:flex;gap:16px;align-items:center;margin-top:26px;flex-wrap:wrap}
+.hero .sub p{font-size:13px;color:rgba(255,255,255,.75);max-width:260px;line-height:1.5}
+.work-card{width:330px;background:rgba(12,18,14,.78);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-radius:22px;padding:18px;display:grid;grid-template-columns:1fr 110px;gap:14px;align-items:stretch}
+.work-card .meta{color:rgba(255,255,255,.55)}
+.work-card b{display:block;font-weight:500;font-size:18px;line-height:1.25;margin:6px 0 12px;letter-spacing:-.02em}
+.work-card img{width:110px;height:130px;object-fit:cover;border-radius:14px}
+.work-card .tags{display:flex;gap:6px;flex-wrap:wrap}
+
+/* about */
+.about{position:relative;overflow:hidden}
+.about::before{content:"";position:absolute;inset:0;background:url(img/w_wide1.jpg) center 30%/cover;opacity:.4}
+.about::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(236,236,234,.7) 0%,rgba(236,236,234,.78) 55%,#ececea 100%)}
+.about .wrap{position:relative;z-index:1}
+.about-top{display:grid;grid-template-columns:1.25fr 1fr;gap:60px;align-items:end}
+.about-top .note{display:flex;gap:16px;align-items:flex-start}
+.leaf-ic{flex:none;width:38px;height:38px;border-radius:50%;border:1px solid var(--moss);display:grid;place-items:center;color:var(--moss)}
+.leaf-ic svg{width:18px;height:18px}
+.name-row{margin-top:70px}
+.name-row .big{display:flex;justify-content:space-between;align-items:flex-end;margin-top:22px}
+.name-row .big svg{height:min(17vw,230px);width:auto;display:block}
+.name-row .big{color:#6d6f71}
+.name-row .tags{display:flex;justify-content:space-between;gap:24px}
+.name-row .desc{max-width:300px}
+.name-row .desc.r{text-align:right}
+.name-row .desc b{display:block;font-size:15px;font-weight:600;color:var(--ink);letter-spacing:-.01em;margin-bottom:6px}
+.name-row .desc b span{font-weight:400;color:var(--moss)}
+.name-row .desc p{font-size:14px;line-height:1.65;color:var(--ink-2)}
+.moss-band{position:relative;margin-top:0;border-radius:var(--r);overflow:hidden;height:560px;background:url(img/w_moss.jpg) center 40%/cover}
+.moss-band::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(6,14,9,.85) 0%,rgba(6,14,9,.65) 45%,rgba(6,14,9,.1) 85%)}
+.moss-band .card{position:absolute;left:48px;top:50%;transform:translateY(-50%);width:min(620px,80%);color:#fff;z-index:1;text-shadow:0 1px 14px rgba(0,0,0,.45)}
+.moss-band .card h2{font-size:clamp(26px,3vw,38px);font-weight:600;letter-spacing:-.035em;line-height:1.3}
+.moss-band .card h2 .g{color:#a6d65a}
+.moss-band .card p{font-size:15px;line-height:1.75;color:rgba(255,255,255,.85);margin-top:20px;max-width:440px}
+
+/* products */
+.products{background:var(--paper);position:relative;overflow:hidden}
+.products::before{content:"";position:absolute;left:0;right:0;top:0;height:min(900px,70%);background:url(img/spray_1.jpg) center 35%/cover;opacity:.35}
+.products::after{content:"";position:absolute;left:0;right:0;top:0;height:min(900px,70%);background:linear-gradient(180deg,rgba(246,246,244,.72) 0%,rgba(246,246,244,.8) 55%,#f6f6f4 100%)}
+.products .wrap{position:relative;z-index:1}
+.prod-top{max-width:760px}
+.prod-top .right h3{font-size:clamp(28px,3.6vw,46px);font-weight:600;letter-spacing:-.04em;line-height:1.2;margin:18px 0 16px}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:56px}
+.more{display:flex;justify-content:flex-end;margin-top:36px}
+.pcard{background:#fff;border-radius:22px;overflow:hidden;display:flex;flex-direction:column;transition:transform .3s}
+.pcard:hover{transform:translateY(-5px)}
+.pcard img{aspect-ratio:4/5;object-fit:cover;width:100%}
+.pcard .t{padding:18px 20px 22px;display:flex;flex-direction:column;gap:4px}
+.pcard .t .en{align-self:flex-start;margin-bottom:6px}
+.pcard .t strong{font-size:18px;font-weight:600;letter-spacing:-.03em}
+.pcard .t small{font-size:13px;color:var(--ink-2);line-height:1.6}
+.numlist{list-style:none}
+.numlist li{display:grid;grid-template-columns:44px 1fr;gap:10px;padding:16px 0;border-top:1px solid var(--line)}
+.numlist li .n{font-size:13px;color:var(--moss);font-weight:500;padding-top:2px}
+.numlist li b{display:block;font-weight:600;font-size:15px;color:var(--ink);margin-bottom:2px}
+.numlist li span{font-size:14px;color:var(--ink-2)}
+
+/* readymade */
+.rm{position:relative;overflow:hidden}
+.rm::before{content:"";position:absolute;left:0;right:0;top:0;height:min(900px,60%);background:url(img/rm_bg.jpg) center 40%/cover;opacity:.35}
+.rm::after{content:"";position:absolute;left:0;right:0;top:0;height:min(900px,60%);background:linear-gradient(180deg,rgba(236,236,234,.7) 0%,rgba(236,236,234,.8) 55%,var(--bg) 100%)}
+.rm .wrap{position:relative;z-index:1}
+.rm-top{max-width:760px}
+.rm-logo{margin-top:26px;line-height:0}
+.rm-logo img{width:min(46%,220px);height:auto}
+.rm-catch .g{color:var(--moss)}
+.rm-catch{margin:26px 0 14px;font-size:clamp(22px,2.6vw,32px);font-weight:600;letter-spacing:-.04em;line-height:1.3}
+.rm .tags{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0 26px}
+
+/* works */
+.works{background:var(--paper);color:var(--ink);border-radius:var(--r);margin:0 12px;position:relative;overflow:hidden}
+.works::before{content:"";position:absolute;left:0;right:0;top:0;height:min(1500px,45%);background:url(img/w_wide4.jpg) center 40%/cover;opacity:.35}
+.works::after{content:"";position:absolute;left:0;right:0;top:0;height:min(1500px,45%);background:linear-gradient(180deg,rgba(246,246,244,.7) 0%,rgba(246,246,244,.8) 60%,#f6f6f4 100%)}
+.works .wrap{position:relative;z-index:1}
+.works-head{display:block}
+.works-head .h2{font-size:clamp(26px,3.4vw,46px);margin-top:18px}
+.slices{--H:520px;--g:8px;display:grid;grid-template-columns:repeat(4,1fr);gap:var(--g);height:var(--H);margin-top:56px}
+.slices .s{position:relative;overflow:hidden;border-radius:20px;margin-top:var(--t,0px);height:calc(var(--H) - var(--t,0px) - var(--b,0px))}
+.slices .s img{position:absolute;top:calc(-1 * var(--t,0px));height:var(--H);width:calc(400% + 3 * var(--g));max-width:none;left:calc(var(--i) * -100% - var(--i) * var(--g));object-fit:cover;object-position:center 45%}
+.slice-notes{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:-150px;position:relative}
+.slice-notes div{padding-right:14px}
+.slice-notes h4{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:8px}
+.slice-notes h4 em{font-style:normal;color:var(--moss)}
+.slice-notes p{font-size:13px;color:var(--ink-2);line-height:1.65}
+.gallery{columns:3 260px;column-gap:14px;margin-top:100px}
+.gallery figure{break-inside:avoid;margin-bottom:14px;position:relative;border-radius:var(--r-sm);overflow:hidden}
+.gallery img{width:100%}
+.gallery figcaption{position:absolute;left:12px;bottom:12px;right:12px;display:flex;gap:6px;flex-wrap:wrap}
+.gallery figcaption .pill{background:rgba(12,24,16,.55);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-color:rgba(255,255,255,.2);color:#fff}
+.process{display:block;margin-top:90px}
+.process .ph{border-radius:var(--r);overflow:hidden;aspect-ratio:4/5}
+.process .ph img{width:100%;height:100%;object-fit:cover}
+.process h3{font-size:26px;font-weight:600;color:var(--ink);letter-spacing:-.03em;margin:12px 0 24px}
+.process .side{display:flex;justify-content:flex-end;align-items:flex-end;margin-top:30px;gap:20px}
+
+/* guide (editorial band) */
+.band{--BH:560px;position:relative;height:var(--BH);border-radius:var(--r);overflow:hidden;background:#0d140f}
+.band .strip{position:absolute;left:0;right:0;overflow:hidden;height:calc(var(--BH) / 3);top:calc(var(--k) * var(--BH) / 3)}
+.band .strip img{position:absolute;top:calc(var(--k) * var(--BH) / -3);left:var(--x);width:calc(100% + 80px);max-width:none;height:var(--BH);object-fit:cover}
+.band .strip + .strip{border-top:2px solid var(--bg)}
+.band .shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,10,7,.88) 0%,rgba(5,10,7,.55) 38%,rgba(5,10,7,.05) 75%)}
+.band .ov{position:absolute;inset:0;padding:48px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;text-align:left;color:#fff}
+.band .ov h2{font-size:clamp(36px,5vw,66px);font-weight:600;letter-spacing:-.045em;line-height:1.05;margin-top:0}
+.band .ov p{font-size:14px;color:rgba(255,255,255,.82);max-width:340px;margin-top:22px;line-height:1.65}
+.ggrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
+.gcard{position:relative;overflow:hidden;isolation:isolate;background:#fff;border-radius:22px;padding:24px 24px 22px;display:flex;flex-direction:column;gap:12px;min-height:200px;transition:color .35s}
+.gcard::before{content:"";position:absolute;inset:0;z-index:-2;background:var(--bg-img) center/cover;opacity:0;transform:scale(1.08);transition:opacity .45s,transform .8s}
+.gcard::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(8,14,10,.35) 0%,rgba(8,14,10,.78) 100%);opacity:0;transition:opacity .45s}
+.gcard:hover,.gcard:focus-visible{color:#fff}
+.gcard:hover::before,.gcard:focus-visible::before{opacity:1;transform:scale(1)}
+.gcard:hover::after,.gcard:focus-visible::after{opacity:1}
+.gcard:hover .pill,.gcard:focus-visible .pill{border-color:rgba(255,255,255,.45);color:#fff}
+.gcard:hover .num,.gcard:hover .meta{color:rgba(255,255,255,.8)}
+.gcard:hover .arr{background:var(--moss);color:#fff}
+.gcard .top{display:flex;justify-content:space-between;align-items:center}
+.gcard .num{font-size:13px;color:var(--muted)}
+.gcard strong{font-size:18px;font-weight:600;letter-spacing:-.03em;line-height:1.45}
+.gcard .bot{margin-top:auto;display:flex;justify-content:space-between;align-items:center}
+.gcard .arr{width:34px;height:34px;border-radius:50%;background:var(--bg);display:grid;place-items:center;font-size:14px;transition:.25s}
+
+/* class */
+.klass{position:relative;overflow:hidden}
+.klass::before{content:"";position:absolute;inset:0;background:url(img/class_bg.jpg) center/cover;opacity:.35}
+.klass::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(236,236,234,.7) 0%,rgba(236,236,234,.78) 50%,rgba(236,236,234,.7) 85%,var(--bg) 100%)}
+.klass .wrap{position:relative;z-index:1}
+.kgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:50px}
+.kbox{background:#fff;border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
+.kbox .ph{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:100%;gap:8px;padding:8px;height:320px}
+.kbox .ph.one{grid-template-columns:1fr}
+.kbox .ph img{width:100%;height:100%;min-height:0;object-fit:cover;border-radius:20px}
+.kbox .t{padding:24px 30px 32px}
+.kbox h3{font-size:26px;font-weight:600;letter-spacing:-.035em;margin:12px 0 8px}
+.kbox p{color:var(--ink-2);font-size:15px}
+.steps{list-style:none;margin-top:20px;border-top:1px solid var(--line)}
+.steps li{display:grid;grid-template-columns:40px 1fr;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px}
+.steps li .n{color:var(--moss);font-weight:500;font-size:13px}
+
+/* together */
+.tg-box{position:relative;overflow:hidden;margin:0 12px 12px;border-radius:var(--r);background:#0d0f0d;color:#eee;padding:120px 0}
+.tg-box::before{content:"";position:absolute;inset:-30px;background:url(img/botanical_bg.jpg) center/cover;opacity:.45;filter:blur(5px)}
+.tg-box::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,12,10,.9) 0%,rgba(10,12,10,.78) 55%,rgba(10,12,10,.6) 100%)}
+.tg-box .wrap{position:relative;z-index:1}
+.tg-box .grid{display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:end}
+.tg-box .grid .tg-info{grid-column:1/-1;margin-top:0}
+.tg-posters{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.tg-posters figure{margin:0}
+.tg-posters img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:var(--r-sm);box-shadow:0 20px 40px rgba(0,0,0,.4)}
+.tg-posters figcaption{margin-top:10px;font-family:Outfit,sans-serif;font-size:12px;letter-spacing:.04em;color:#9da39b}
+.tg-title{margin-top:22px;font-family:Outfit,sans-serif;font-size:clamp(40px,5.6vw,76px);font-weight:700;letter-spacing:-.04em;line-height:.95}
+.tg-title em{font-style:normal;font-weight:300;color:#b9c9a8}
+.tg-box .lead{color:#b5b5b5;margin-top:24px}
+.tg-info{margin-top:0}
+.timeline.tg-info li{border-top-color:rgba(255,255,255,.18);grid-template-columns:120px 1fr;color:#f2f2f2}
+.timeline.tg-info li small{display:block;color:#9da39b;font-size:13px;margin-top:4px}
+.timeline{list-style:none;margin-top:30px}
+.timeline li{display:grid;grid-template-columns:100px 1fr;gap:16px;align-items:center;padding:14px 0;border-top:1px solid var(--line);font-size:15px}
+.timeline li .pill{justify-self:start}
+
+/* plantmosphere */
+.pm-box{position:relative;overflow:hidden;margin:0 12px;border-radius:var(--r);background:#0f0f0f;color:#eee;padding:110px 0}
+.pm-box::before{content:"";position:absolute;inset:0;background:url(img/pm_bg2.jpg) center/cover;opacity:.6}
+.pm-box::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(15,15,15,.92) 0%,rgba(15,15,15,.7) 50%,rgba(15,15,15,.35) 100%)}
+.pm-box .wrap{position:relative;z-index:1}
+.pm .grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.pm h2{font-size:clamp(44px,6vw,84px);font-weight:500;letter-spacing:-.05em;line-height:1}
+.pm h2 em{font-style:normal;font-weight:300;color:#9a9a9a}
+.pm .pm-logo{margin-top:26px;line-height:0}
+.pm .pm-logo img{width:min(50%,260px);height:auto}
+.pm .lead{color:#a5a5a5;margin:24px 0 30px}
+.pm-log{margin-top:70px}
+.pm-log-h{display:flex;align-items:center;gap:14px;margin-bottom:6px}
+.pm-log-h b{font-size:15px;font-weight:500;color:#fff}
+.timeline.tg-info.pm-lots li{grid-template-columns:120px 1fr auto}
+.lot-link{font-size:13px;color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:7px 14px;white-space:nowrap;transition:.2s}
+.lot-link:hover{background:#fff;color:var(--ink)}
+.pm .pack img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:var(--r-sm);box-shadow:0 30px 60px rgba(0,0,0,.45)}
+
+/* contact */
+.contact .grid{display:grid;grid-template-columns:1fr 1.1fr;gap:60px}
+.info{list-style:none;margin-top:30px}
+.info li{display:grid;grid-template-columns:90px 1fr;gap:10px;padding:14px 0;border-top:1px solid var(--line);font-size:15px}
+.info li span{color:var(--muted);font-size:13px;padding-top:2px}
+.wnote{margin-top:10px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;line-height:1.7;color:var(--muted)}
+.wnote b{display:block;font-weight:600;color:var(--ink);font-size:13px;margin-bottom:2px}
+form{background:#fff;border-radius:var(--r);padding:34px;display:grid;gap:18px;align-content:start}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.chips label{cursor:pointer}
+.chips input{position:absolute;opacity:0;pointer-events:none}
+.chips span{display:inline-block;padding:9px 16px;border:1px solid var(--line);border-radius:999px;font-size:14px;transition:.15s;color:var(--ink)}
+.chips input:checked+span{background:var(--ink);border-color:var(--ink);color:#fff}
+.chips input:focus-visible+span{outline:2px solid var(--moss);outline-offset:2px}
+.field{display:grid;gap:6px;font-size:13px;color:var(--ink-2)}
+.field input,.field textarea{font:inherit;font-size:15px;color:var(--ink);padding:13px 16px;border:1px solid transparent;border-radius:14px;background:var(--bg)}
+.field textarea{min-height:140px;resize:vertical}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--ink);background:#fff}
+.err{color:#b3261e;font-size:13px;min-height:18px}
+form .btn{font:inherit;font-size:14px;font-weight:500;cursor:pointer;justify-self:end}
+
+/* footer */
+footer{margin:0 12px 12px;border-radius:var(--r);background:var(--ink);color:#c3c9c4;padding:56px 0 40px;overflow:hidden}
+footer .row{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:flex-start}
+footer .f-logo{display:block;width:60px;height:auto;margin:16px 0 0 auto}
+footer .links{display:flex;gap:10px;flex-wrap:wrap}
+footer .links a{border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:8px 16px;font-size:13px}
+footer .links a:hover{background:#fff;color:var(--ink)}
+footer .copy{display:flex;justify-content:flex-end;margin-top:40px;font-size:12px;color:#7e867f;flex-wrap:wrap;gap:10px}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .8s,transform .8s}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+@media (max-width:1000px){
+  section{padding:90px 0}
+  .menu{position:fixed;top:84px;left:12px;right:12px;background:rgba(246,246,244,.96);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);color:var(--ink);flex-direction:column;gap:0;padding:10px 24px;border-radius:24px;display:none;font-size:15px;box-shadow:0 10px 30px rgba(0,0,0,.08)}
+  .menu.open{display:flex}
+  .menu a{padding:13px 0;border-bottom:1px solid var(--line);opacity:1}
+  .menu a:last-child{border:0}
+  .burger{display:block}
+  .bar .store{display:none}
+  .about-top,.prod-top,.works-head,.process,.tg-box .grid,.pm .grid,.contact .grid{grid-template-columns:1fr;gap:36px}
+  .work-card{display:none}
+  .pgrid,.ggrid{grid-template-columns:repeat(2,1fr)}
+  .kgrid{grid-template-columns:1fr}
+  }
+@media (max-width:640px){
+  .wrap{padding:0 16px}
+  section{padding:72px 0}
+  .hero{padding:8px}
+  .hero-box{height:calc(100svh - 16px);border-radius:22px}
+  .giant-logo{width:64vw;top:110px}
+  .hero .side-meta{display:none}
+  .hero-bottom{left:20px;right:20px;bottom:22px}
+  .hero .sub p{display:none}
+  .name-row{margin-top:50px}
+  .name-row .tags{gap:16px}
+  .name-row .desc b{font-size:13px}
+  .name-row .desc p{font-size:12px}
+  .moss-band{height:auto;padding:28px 22px 24px;display:flex;flex-direction:column;gap:28px;min-height:480px;justify-content:center}
+  .moss-band::before{background:linear-gradient(180deg,rgba(6,14,9,.8) 0%,rgba(6,14,9,.6) 60%,rgba(6,14,9,.35) 100%)}
+  .moss-band .card{position:relative;left:auto;top:auto;transform:none;width:100%}
+  .moss-band .card h2{font-size:24px}
+  .moss-band .card p{font-size:14px}
+        .pgrid{gap:10px}
+  .pcard{border-radius:18px}
+  .pcard .t{padding:14px 14px 16px}
+  .pcard .t strong{font-size:15px}
+  .pcard .t small{font-size:12px}
+  .pcard .t .en{font-size:11px;padding:4px 10px}
+  .works,.pm-box{margin:0 8px;border-radius:22px}
+  .slices{--H:340px;--g:6px;margin-top:40px}
+  .slices .s{border-radius:14px}
+  .slice-notes{grid-template-columns:1fr 1fr;margin-top:24px;gap:20px}
+  .slice-notes .sp{display:none}
+  .gallery{columns:2;column-gap:10px;margin-top:60px}
+  .gallery figure{margin-bottom:10px;border-radius:14px}
+  .gallery figcaption{left:8px;bottom:8px}
+  .gallery figcaption .pill:nth-child(n+2){display:none}
+  .gallery figcaption .pill{font-size:11px;padding:4px 10px}
+  .process{margin-top:60px}
+  .band{--BH:540px;border-radius:22px}
+  .band .ov{padding:26px}
+  .band .shade{background:linear-gradient(180deg,rgba(5,10,7,.85) 0%,rgba(5,10,7,.6) 65%,rgba(5,10,7,.35) 100%)}
+  .ggrid{grid-template-columns:1fr}
+  .gcard{min-height:0}
+  .kbox .ph{height:240px}
+  .kbox .t{padding:20px 22px 26px}
+  .timeline li{grid-template-columns:86px 1fr;font-size:14px}
+  .timeline.tg-info li{grid-template-columns:96px 1fr}
+  .timeline.tg-info.pm-lots li{grid-template-columns:1fr auto;row-gap:10px}
+  .pm-lots li .pill{grid-column:1/-1}
+  .pm-box{padding:72px 0}
+  form{padding:22px}
+  footer{margin:0 8px 8px;border-radius:22px}
+}
+</style>
+</head>
+<body>
+
+<header id="hdr">
+  <div class="bar">
+    <a href="#" class="logo" aria-label="오자르 홈"><img class="w" src="img/logo_w.png" alt="eaujar"><img class="d" src="img/logo.png" alt="eaujar"></a>
+    <nav class="menu" id="menu">
+      <a href="#about">About</a>
+      <a href="#products">Products</a>
+      <a href="#works">Works</a>
+      <a href="#guide">Guide</a>
+      <a href="#class">Class &amp; Custom</a>
+      <a href="#plantmosphere">plantmosphere.</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="store" href="https://smartstore.naver.com/eaujar" target="_blank" rel="noopener">Store ↗</a>
+    <button class="burger" id="burger" aria-label="메뉴 열기" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-box">
+    <img class="giant-logo" src="img/logo_w.png" alt="eaujar 오자르">
+    <div class="hero-bottom">
+      <div>
+        <p class="hero-eyebrow">Vivarium · Hardscape · Plant Curation · Event Planning</p>
+        <h1>유리 안에 옮겨 온<br>한 조각의 야생</h1>
+        <p class="hero-copy">물(Eau)과 유리(Jar), 오자르는 그 안에 자연의 서식지를 그대로 옮겨 담습니다.<br>보기 좋은 장식이 아니라, 생명이 살아가는 작은 생태계를 만듭니다.</p>
+        <div class="sub">
+          <a class="btn" href="#products"><i>→</i>제품 둘러보기</a>
+        </div>
+      </div>
+      <a class="work-card" href="#works">
+        <div>
+          <span class="meta">Selected work</span>
+          <b>604560<br>다트프록 비바리움</b>
+          <div class="tags"><span class="pill light">Vivarium</span><span class="pill light">Dart frog</span></div>
+        </div>
+        <img src="img/w_bluefrog.jpg" alt="다트프록 비바리움">
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="moss-band rv">
+      <div class="card">
+        <h2><span class="g">비바리움은</span><br>사람이 만들지만,<br>결국 동물이 살아가는 자연 공간.</h2>
+        <p>우리에게는 장식이지만 그 안의 생명에게는 하나의 세상입니다. 그래서 오자르는 보기 좋은 장면보다 살아가기 좋은 환경을 먼저 생각합니다. 미생물부터 식물, 바닥재, 사육장 관리까지 하나의 생태계를 돌보는 제품을 만들고, 직접 만든 비바리움으로 그 과정을 기록합니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+  <div class="wrap">
+    <div class="prod-top rv">
+      <div class="right">
+        <span class="pill">Products</span>
+        <h3>하나의 생태계를 만들고 관리하는 제품군</h3>
+        <p class="lead" style="font-size:15px">미생물 활성제와 식물 영양제, 사육장 클리너, 전용 배합토와 하드스케이프 소재까지. 모든 제품은 네이버 스마트스토어에서 만나실 수 있습니다.</p>
+      </div>
+    </div>
+    <div class="pgrid rv" id="pgrid">
+      <a class="pcard" href="https://smartstore.naver.com/eaujar" target="_blank" rel="noopener"><img src="img/p_zyme.jpg" alt="자임부스터" loading="lazy"><div class="t"><span class="pill en">zyme.</span><strong>자임부스터</strong><small>미생물 효소제. 비바리움 속 미생물 활성을 돕습니다.</small></div></a>
+      <a class="pcard" href="https://smartstore.naver.com/eaujar" target="_blank" rel="noopener"><img src="img/p_nutrient.jpg" alt="뉴트리언트부스터" loading="lazy"><div class="t"><span class="pill en">nutrient.</span><strong>뉴트리언트부스터</strong><small>식물에게 꼭 필요한 필수 영양분을 뿌려서 바로.</small></div></a>
+      <a class="pcard" href="https://smartstore.naver.com/eaujar" target="_blank" rel="noopener"><img src="img/p_element.jpg" alt="엘리먼트부스터" loading="lazy"><div class="t"><span class="pill en">element.</span><strong>엘리먼트부스터</strong><small>희석해서 쓰는 천연 식물 영양제 원액.</small></div></a>
+      <a class="pcard" href="https://smartstore.naver.com/eaujar" target="_blank" rel="noopener"><img src="img/p_pesti.jpg" alt="페스티부스터" loading="lazy"><div class="t"><span class="pill en">pesti.</span><strong>페스티부스터</strong><small>새로 들인 식물의 검역과 해충 관리.</small></div></a>
+      <a class="pcard" href="https://smartstore.naver.com/eaujar" target="_blank" rel="noopener"><img src="img/p_phyton.jpg" alt="피톤부스터" loading="lazy"><div class="t"><span class="pill en">phyton.</span><strong>피톤부스터</strong><small>양서·파충류 사육장 청소용 클리너.</small></div></a>
+      <a class="pcard" href="https://smartstore.naver.com/eaujar" target="_blank" rel="noopener"><img src="img/p_soil.jpg" alt="소일부스터" loading="lazy"><div class="t"><span class="pill en">soil.</span><strong>소일부스터</strong><small>저면 미생물의 스타터. 빠르고 안정적인 흙잡이.</small></div></a>
+      <a class="pcard" href="https://smartstore.naver.com/eaujar" target="_blank" rel="noopener"><img src="img/p_vmix.jpg" alt="비바리움믹스" loading="lazy"><div class="t"><span class="pill en">vivarium mix.</span><strong>비바리움믹스</strong><small>12가지 재료로 만든 바이오액티브 비바리움 전용토.</small></div></a>
+      <a class="pcard" href="https://smartstore.naver.com/eaujar" target="_blank" rel="noopener"><img src="img/p_tmix.jpg" alt="테라리움믹스" loading="lazy"><div class="t"><span class="pill en">terrarium mix.</span><strong>테라리움믹스</strong><small>배수·통기·보비·보습을 갖춘 뿌리가 약한 식물용 전용토.</small></div></a>
+      <a class="pcard" href="https://smartstore.naver.com/eaujar" target="_blank" rel="noopener"><img src="img/p_vine.jpg" alt="더바인" loading="lazy"><div class="t"><span class="pill en">the vine.</span><strong>더바인</strong><small>비바리움에 디테일을 더하는 덩굴 줄기.</small></div></a>
+      <a class="pcard" href="https://smartstore.naver.com/eaujar" target="_blank" rel="noopener"><img src="img/p_drift.jpg" alt="더드리프트우드" loading="lazy"><div class="t"><span class="pill en">the driftwood.</span><strong>더드리프트우드</strong><small>직접 고른 하드스케이프용 유목 셀렉션.</small></div></a>
+      <a class="pcard" href="https://smartstore.naver.com/eaujar" target="_blank" rel="noopener"><img src="img/p_natureplay.jpg" alt="네이처플레이" loading="lazy"><div class="t"><span class="pill en">nature play.</span><strong>네이처플레이</strong><small>누구나 쉽게 시작하는 테라리움 올인원 키트.</small></div></a>
+    </div>
+    <div class="more rv"><a class="btn" href="https://smartstore.naver.com/eaujar" target="_blank" rel="noopener"><i>↗</i>전체 제품 보기</a></div>
+  </div>
+</section>
+
+<!-- PLANTMOSPHERE -->
+<div class="pm-box pm" id="plantmosphere">
+  <div class="wrap grid">
+    <div class="rv">
+      <span class="pill light">Curation</span>
+      <h2 class="pm-logo"><img src="img/pm_logo_w.png" alt="plantmosphere."></h2>
+      <p class="lead">plant + moss + atmosphere. 오자르의 취향으로 고른 식물 큐레이션 브랜드입니다. 국내 유통으로 만나는 식물부터 해외 농장에서 직접 들여오는 공동구매 수입까지, 여러 길을 통해 쉽게 만나기 어려운 정글 식물과 소형 난초를 소개합니다. 고르는 기준은 하나, 오자르가 직접 키워 보고 싶은 식물인가입니다.</p>
+      <div class="more" style="margin-top:0"><a class="btn ghost" href="https://eaujar.github.io/plantmosphere/" target="_blank" rel="noopener"><i>↗</i>plantmosphere. 둘러보기</a></div>
+    </div>
+    <div class="pack rv"><img src="img/pm_pack.jpg" alt="plantmosphere. 패키지" loading="lazy"></div>
+  </div>
+  <div class="wrap pm-log rv">
+    <div class="pm-log-h"><span class="pill light">Import group buy</span><b>수입 공동구매 이력</b></div>
+    <ul class="timeline tg-info pm-lots">
+      <li><span class="pill light">Lot.01</span><div>2026.10 · 인도네시아 정글 식물 52종<small>수마트라·보르네오·파푸아 산지 식물 베어루트 수입 · 11월 중순 입고</small></div><a class="lot-link" href="https://eaujar.github.io/plantmosphere/" target="_blank" rel="noopener">공구 페이지 ↗</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- READYMADE -->
+<section class="rm">
+  <div class="wrap">
+    <div class="rm-top rv">
+      <span class="pill">Hardscape</span>
+      <h2 class="rm-logo"><img src="img/rm_logo_b.png" alt="readyMADE."></h2>
+      <p class="rm-catch">구조는 준비되어 있습니다.<br><span class="g">이제는 당신만의 숲을 만들어보세요.</span></p>
+      <p class="lead">비바리움을 시작할 때 가장 막막한 건 뼈대를 만드는 일입니다. readyMADE.는 키우려는 생물의 동선과 공간을 고려해 오자르가 미리 완성한 하드스케이프 구조입니다. 화분을 고르듯 구조를 고르고, 그 위에 원하는 식물을 심어 보세요.</p>
+    </div>
+    <div class="pgrid rv" id="rmgrid">
+      <a class="pcard" href="https://smartstore.naver.com/eaujar" target="_blank" rel="noopener"><img src="img/rmp_01.jpg" alt="readyMADE. Leaf Basin" loading="lazy"><div class="t"><span class="pill en">rM.2603_01</span><strong>Leaf Basin</strong></div></a>
+      <a class="pcard" href="https://smartstore.naver.com/eaujar" target="_blank" rel="noopener"><img src="img/rmp_02.jpg" alt="readyMADE. Marsh" loading="lazy"><div class="t"><span class="pill en">rM.2603_02</span><strong>Marsh</strong></div></a>
+      <a class="pcard" href="https://smartstore.naver.com/eaujar" target="_blank" rel="noopener"><img src="img/rmp_03.jpg" alt="readyMADE. Fernshade" loading="lazy"><div class="t"><span class="pill en">rM.2603_03</span><strong>Fernshade</strong></div></a>
+      <a class="pcard" href="https://smartstore.naver.com/eaujar" target="_blank" rel="noopener"><img src="img/rmp_04.jpg" alt="readyMADE. Moss Hollow" loading="lazy"><div class="t"><span class="pill en">rM.2603_04</span><strong>Moss Hollow</strong></div></a>
+      <a class="pcard" href="https://smartstore.naver.com/eaujar" target="_blank" rel="noopener"><img src="img/rmp_05.jpg" alt="readyMADE. Wetland" loading="lazy"><div class="t"><span class="pill en">rM.2603_05</span><strong>Wetland</strong></div></a>
+      <a class="pcard" href="https://smartstore.naver.com/eaujar" target="_blank" rel="noopener"><img src="img/rmp_06.jpg" alt="readyMADE. Lagoon" loading="lazy"><div class="t"><span class="pill en">rM.2603_06</span><strong>Lagoon</strong></div></a>
+      <a class="pcard" href="https://smartstore.naver.com/eaujar" target="_blank" rel="noopener"><img src="img/rmp_07.jpg" alt="readyMADE. Driftpool" loading="lazy"><div class="t"><span class="pill en">rM.2603_07</span><strong>Driftpool</strong></div></a>
+      <a class="pcard" href="https://smartstore.naver.com/eaujar" target="_blank" rel="noopener"><img src="img/rmp_08.jpg" alt="readyMADE. Streambed" loading="lazy"><div class="t"><span class="pill en">rM.2603_08</span><strong>Streambed</strong></div></a>
+      <a class="pcard" href="https://smartstore.naver.com/eaujar" target="_blank" rel="noopener"><img src="img/rmp_09.jpg" alt="readyMADE. Cave" loading="lazy"><div class="t"><span class="pill en">rM.2603_09</span><strong>Cave</strong></div></a>
+      <a class="pcard" href="https://smartstore.naver.com/eaujar" target="_blank" rel="noopener"><img src="img/rmp_10.jpg" alt="readyMADE. Dewfall" loading="lazy"><div class="t"><span class="pill en">rM.2603_10</span><strong>Dewfall</strong></div></a>
+      <a class="pcard" href="https://smartstore.naver.com/eaujar" target="_blank" rel="noopener"><img src="img/rmp_11.jpg" alt="readyMADE. Canyon" loading="lazy"><div class="t"><span class="pill en">rM.2603_11</span><strong>Canyon</strong></div></a>
+    </div>
+    <div class="more rv"><a class="btn dark" href="https://smartstore.naver.com/eaujar" target="_blank" rel="noopener"><i>↗</i>readyMADE. 전체 보기</a></div>
+  </div>
+</section>
+
+<!-- WORKS -->
+<section class="works" id="works">
+  <div class="wrap">
+    <div class="works-head rv">
+      <span class="pill">Vivariums</span>
+      <h2 class="h2"><span class="g">그 안에 살 생물</span>을 먼저 생각하고,<br>그 생물의 자연을 유리 안에 옮깁니다.</h2>
+    </div>
+    <div class="slices rv" aria-hidden="true">
+      <div class="s" style="--i:0;--b:24px"><img src="img/viv_slice.jpg" alt=""></div>
+      <div class="s" style="--i:1;--t:18px"><img src="img/viv_slice.jpg" alt=""></div>
+      <div class="s" style="--i:2;--t:32px;--b:10px"><img src="img/viv_slice.jpg" alt=""></div>
+      <div class="s" style="--i:3"><img src="img/viv_slice.jpg" alt=""></div>
+    </div>
+
+    <div class="gallery">
+      <figure class="rv"><img src="img/w_bluefrog.jpg" alt="다트프록" loading="lazy"><figcaption><span class="pill">604560</span><span class="pill">Dart frog</span></figcaption></figure>
+      <figure class="rv"><img src="img/w_wide1.jpg" alt="453027 비바리움" loading="lazy"><figcaption><span class="pill">453027</span><span class="pill">Santa Isabel</span></figcaption></figure>
+      <figure class="rv"><img src="img/w_tall.jpg" alt="303060 팔루다리움" loading="lazy"><figcaption><span class="pill">303060</span><span class="pill">Paludarium</span></figcaption></figure>
+      <figure class="rv"><img src="img/w_frog_orange.jpg" alt="범블비 다트프록" loading="lazy"><figcaption><span class="pill">303030</span><span class="pill">Bumblebee</span></figcaption></figure>
+      <figure class="rv"><img src="img/w_hard.jpg" alt="하드스케이프" loading="lazy"><figcaption><span class="pill">Hardscape</span><span class="pill">Cork &amp; wood</span></figcaption></figure>
+      <figure class="rv"><img src="img/w_wide3.jpg" alt="604560 비바리움" loading="lazy"><figcaption><span class="pill">604560</span><span class="pill">Forest floor</span></figcaption></figure>
+      <figure class="rv"><img src="img/w_brom.jpg" alt="303030 다트프록 비바리움" loading="lazy"><figcaption><span class="pill">303030</span><span class="pill">Bromeliad</span></figcaption></figure>
+      <figure class="rv"><img src="img/w_wide4.jpg" alt="604560 비바리움 전체" loading="lazy"><figcaption><span class="pill">604560</span><span class="pill">Full view</span></figcaption></figure>
+    </div>
+
+    <div class="process">
+      <div class="rv">
+        <span class="pill">Process</span>
+        <h3>하나의 비바리움이 완성되기까지</h3>
+        <ol class="numlist">
+          <li><span class="n">01</span><div><b>관찰과 기획</b><span>키울 생물의 습성과 동선, 필요한 습도와 빛을 먼저 정리합니다.</span></div></li>
+          <li><span class="n">02</span><div><b>하드스케이프</b><span>유목과 코르크, 수석으로 생물이 쓸 수 있는 '길'과 뼈대를 세웁니다.</span></div></li>
+          <li><span class="n">03</span><div><b>식재와 안정화</b><span>식물과 이끼를 심고, 흙이 잡히고 생태계가 자리 잡을 때까지 기다립니다.</span></div></li>
+        </ol>
+        <div class="side">
+          <a class="btn" href="https://blog.naver.com/eaujar" target="_blank" rel="noopener"><i>↗</i>제작 기록 보기</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GUIDE -->
+<section class="guide" id="guide">
+  <div class="wrap">
+    <div class="band rv">
+      <div class="strip" style="--k:0;--x:-10px"><img src="img/w_wide3.jpg" alt=""></div>
+      <div class="strip" style="--k:1;--x:-60px"><img src="img/w_wide3.jpg" alt=""></div>
+      <div class="strip" style="--k:2;--x:-30px"><img src="img/w_wide3.jpg" alt=""></div>
+      <div class="shade"></div>
+      <div class="ov">
+        <div>
+          <h2>정답보다,<br>오해하는 것<br>그리고 꼭 알아야 할 것.</h2>
+          <p>여러분의 질문에서 시작된 오자르의 비바리움 가이드. 직접 만들고 키우며 겪은 경험을 바탕으로 하나씩 정리했습니다.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="ggrid" id="ggrid">
+      <a class="gcard rv" style="--bg-img:url(img/g_01.jpg)" href="https://blog.naver.com/eaujar" target="_blank" rel="noopener"><div class="top"><span class="pill">물</span><span class="num">01</span></div><strong>수돗물, 정수기, RO수… 비바리움에는 어떤 물을 써야 할까?</strong><div class="bot"><span class="meta">비바리움 가이드</span><span class="arr">↗</span></div></a>
+      <a class="gcard rv" style="--bg-img:url(img/g_02.jpg)" href="https://blog.naver.com/eaujar" target="_blank" rel="noopener"><div class="top"><span class="pill">습도</span><span class="num">02</span></div><strong>습도계는 80%인데 왜 이끼가 마를까? 습도계 숫자의 함정</strong><div class="bot"><span class="meta">비바리움 가이드</span><span class="arr">↗</span></div></a>
+      <a class="gcard rv" style="--bg-img:url(img/g_03.jpg)" href="https://blog.naver.com/eaujar" target="_blank" rel="noopener"><div class="top"><span class="pill">계절</span><span class="num">03</span></div><strong>비바리움에도 계절이 필요할까? 사계절이 아닌 '자연의 리듬'</strong><div class="bot"><span class="meta">비바리움 노트</span><span class="arr">↗</span></div></a>
+      <a class="gcard rv" style="--bg-img:url(img/g_04.jpg)" href="https://blog.naver.com/eaujar/224162073685" target="_blank" rel="noopener"><div class="top"><span class="pill">곰팡이</span><span class="num">04</span></div><strong>비바리움에 곰팡이가 생기는 진짜 이유, 그리고 해결 방법</strong><div class="bot"><span class="meta">비바리움 노트</span><span class="arr">↗</span></div></a>
+      <a class="gcard rv" style="--bg-img:url(img/g_05.jpg)" href="https://blog.naver.com/eaujar/224368226378" target="_blank" rel="noopener"><div class="top"><span class="pill">이끼</span><span class="num">05</span></div><strong>이끼가 갈변하는 이유, 모두 같은 원인은 아닙니다</strong><div class="bot"><span class="meta">비바리움 가이드</span><span class="arr">↗</span></div></a>
+      <a class="gcard rv" style="--bg-img:url(img/g_06.jpg)" href="https://blog.naver.com/eaujar/224369358936" target="_blank" rel="noopener"><div class="top"><span class="pill">빛</span><span class="num">06</span></div><strong>비바리움 조명 시간, 8시간? 10시간? 정답은 따로 있습니다</strong><div class="bot"><span class="meta">비바리움 노트</span><span class="arr">↗</span></div></a>
+      <a class="gcard rv" style="--bg-img:url(img/g_07.jpg)" href="https://blog.naver.com/eaujar/224174062153" target="_blank" rel="noopener"><div class="top"><span class="pill">구조</span><span class="num">07</span></div><strong>비바리움을 만들 때 꼭 알아야 할 '배수층' 이야기</strong><div class="bot"><span class="meta">비바리움 노트</span><span class="arr">↗</span></div></a>
+      <a class="gcard rv" style="--bg-img:url(img/g_08.jpg)" href="https://blog.naver.com/eaujar/224183712932" target="_blank" rel="noopener"><div class="top"><span class="pill">흙</span><span class="num">08</span></div><strong>물생활에 '물잡이'가 있다면, 비바리움에는 '흙잡이'가 필요하다</strong><div class="bot"><span class="meta">비바리움 노트</span><span class="arr">↗</span></div></a>
+      <a class="gcard rv" style="--bg-img:url(img/g_09.jpg)" href="https://blog.naver.com/eaujar/224182970837" target="_blank" rel="noopener"><div class="top"><span class="pill">입문</span><span class="num">09</span></div><strong>비바리움 실패하는 3가지 이유</strong><div class="bot"><span class="meta">비바리움 노트</span><span class="arr">↗</span></div></a>
+    </div>
+  </div>
+</section>
+
+<!-- CLASS & CUSTOM -->
+<section class="klass" id="class">
+  <div class="wrap">
+    <div class="about-top rv">
+      <div><span class="pill">Class</span>
+      <h2 class="h2" style="margin-top:18px">비바리움 클래스</h2></div>
+      <p class="lead" style="font-size:15px">정해진 답을 따라 하는 수업이 아니라, 내가 키울 생물과 내가 바라보는 자연의 한 장면을 함께 찾아가는 시간입니다. 2주 과정으로 하드스케이프부터 식재까지, 나만의 비바리움을 직접 완성합니다.</p>
+    </div>
+    <div class="kgrid">
+      <div class="kbox rv">
+        <div class="ph"><img src="img/class_ready.jpg" alt="비바리움 클래스 준비된 작업대" loading="lazy"><img src="img/class_1.jpg" alt="비바리움 클래스 식재 장면" loading="lazy"></div>
+        <div class="t">
+          <ol class="steps" style="margin-top:0">
+            <li><span class="n">01</span>1주 차 · 이론과 하드스케이프 (뼈대, 유목과 돌의 흐름)</li>
+            <li><span class="n">02</span>2주 차 · 저면 작업, 식물과 이끼 식재, 마무리</li>
+            <li><span class="n">03</span>키우는 생물에 맞춘 1:1 맞춤 진행</li>
+          </ol>
+        </div>
+      </div>
+      <div class="kbox rv">
+        <div class="t">
+          <span class="pill">Custom</span>
+          <h3>맞춤 제작 · 공간 연출</h3>
+          <p>매장과 쇼룸, 브랜드 행사를 위한 비바리움과 디스플레이 연출물을 제작합니다. 공간과 목적에 맞는 소재와 조명까지 함께 제안합니다.</p>
+        </div>
+        <div class="ph one"><img src="img/w_studio.jpg" alt="공간에 놓인 비바리움과 식물" loading="lazy"></div>
+        <div class="t">
+          <ol class="steps" style="margin-top:0">
+            <li><span class="n">01</span>문의 · 공간, 용도, 일정, 수량 확인</li>
+            <li><span class="n">02</span>구성 제안 · 소재와 구조, 견적, 제작 기간</li>
+            <li><span class="n">03</span>제작 · 진행 과정 공유</li>
+            <li><span class="n">04</span>납품과 설치</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <div class="more rv"><a class="btn dark" href="#contact"><i>→</i>클래스 · 제작 문의하기</a></div>
+  </div>
+</section>
+
+<!-- TOGETHER -->
+<section class="tg-box" id="together">
+  <div class="wrap grid">
+    <div class="rv">
+      <span class="pill light">Together · Host</span>
+      <h2 class="tg-title">THE BOTANICAL<br><em>in SEOUL</em></h2>
+      <p class="lead">오자르는 정글 식물 &amp; 비바리움 마켓 THE BOTANICAL의 주최자로서 사업 기획과 운영을 맡고 있습니다. 식물을 사고파는 행사를 넘어, 같은 취향을 가진 사람들이 만나고 머물고 다시 모이는 커뮤니티를 만들어 갑니다.</p>
+    </div>
+    <div class="tg-posters rv">
+      <figure><img src="img/tb_vol02.jpg" alt="THE BOTANICAL in SEOUL Vol.02 포스터" loading="lazy" style="object-position:center 30%"><figcaption>Vol.02 · in SEOUL · 2026.06</figcaption></figure>
+      <figure><img src="img/tb_vol03_main.jpg" alt="THE BOTANICAL Vol.03 in Pullzip 메인 포스터" loading="lazy"><figcaption>Vol.03 · in Pullzip · 2026.09</figcaption></figure>
+    </div>
+    <ul class="timeline tg-info rv">
+      <li><span class="pill light">Organize</span><div>THE BOTANICAL 주최<small>in SEOUL Vol.02 · in Pullzip Vol.03</small></div></li>
+      <li><span class="pill light">Planning</span><div>사업 기획<small>마켓 콘셉트, 커뮤니티 성장 구조, 셀러·스폰서 협업 기획</small></div></li>
+      <li><span class="pill light">Operation</span><div>행사 운영<small>셀러 모집과 공간 배치, 포스터·홍보물 제작, 현장 운영</small></div></li>
+      <li><span class="pill light">Community</span><div>커뮤니티<small>마켓 세션과 커뮤니티 세션, 식물 교환과 네트워킹</small></div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap grid">
+    <div class="rv">
+      <span class="pill">Contact</span>
+      <h2 class="h2" style="margin-top:18px">편하게<br><span class="g">문의 주세요.</span></h2>
+      <p class="lead" style="margin-top:16px">제품 입점과 도매, 클래스, 맞춤 제작 등 무엇이든 환영합니다.</p>
+    </div>
+    <form id="form" class="rv" novalidate>
+      <div class="field">문의 종류
+        <div class="chips" role="radiogroup" aria-label="문의 종류">
+          <label><input type="radio" name="type" value="도매·입점"><span>도매 · 입점</span></label>
+          <label><input type="radio" name="type" value="클래스"><span>클래스</span></label>
+          <label><input type="radio" name="type" value="맞춤 제작"><span>맞춤 제작</span></label>
+          <label><input type="radio" name="type" value="기타"><span>기타</span></label>
+        </div>
+      </div>
+      <label class="field">이름 / 업체명<input name="name" autocomplete="name"></label>
+      <label class="field">연락처 (이메일 또는 전화)<input name="reply"></label>
+      <label class="field">내용<textarea name="msg" placeholder="공간, 일정, 수량 등 자세히 적어주실수록 빠르게 안내해 드릴 수 있어요."></textarea></label>
+      <p class="err" id="err" aria-live="polite"></p>
+      <button class="btn dark" type="submit"><i>→</i>문의 보내기</button>
+      <p class="wnote"><b>입점 · 도매 안내</b>에코브라이티 시리즈, 배합토, 하드스케이프 소재 전 제품을 도매로 공급합니다. 아쿠아샵, 파충류샵, 식물샵, 플랜테리어 공간 어디든 문의 주시면 도매 단가표를 보내드립니다.</p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="row">
+      <div class="links">
+        <a href="https://smartstore.naver.com/eaujar" target="_blank" rel="noopener">Smartstore</a>
+        <a href="https://www.instagram.com/eau.jar/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://blog.naver.com/eaujar" target="_blank" rel="noopener">Blog</a>
+        <a href="https://eaujar.github.io/plantmosphere/" target="_blank" rel="noopener">plantmosphere.</a>
+      </div>
+    </div>
+    <div class="copy"><span>© 2026 eaujar. All rights reserved.</span></div>
+    <img class="f-logo" src="img/logo_w.png" alt="eaujar">
+  </div>
+</footer>
+
+<script>
+const header=document.getElementById('hdr');
+const onScroll=()=>header.classList.toggle('scrolled',scrollY>40);
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+const burger=document.getElementById('burger'),menu=document.getElementById('menu');
+burger.addEventListener('click',()=>{const o=menu.classList.toggle('open');burger.setAttribute('aria-expanded',o);o?header.classList.add('scrolled'):onScroll();});
+menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('open');burger.setAttribute('aria-expanded',false);}));
+
+const pick=(id,n,after)=>{const g=document.getElementById(id);if(!g)return;const cs=[...g.children];for(let i=cs.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[cs[i],cs[j]]=[cs[j],cs[i]];}g.replaceChildren(...cs.slice(0,n));if(after)after(g);};
+pick('pgrid',6);
+pick('rmgrid',6);
+pick('ggrid',6,g=>g.querySelectorAll('.num').forEach((e,i)=>e.textContent=String(i+1).padStart(2,'0')));
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.1});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+const form=document.getElementById('form'),err=document.getElementById('err');
+form.addEventListener('input',()=>err.textContent='');
+form.addEventListener('submit',e=>{
+  e.preventDefault();
+  const d=new FormData(form),type=d.get('type'),name=(d.get('name')||'').trim(),reply=(d.get('reply')||'').trim(),msg=(d.get('msg')||'').trim();
+  if(!type){err.textContent='문의 종류를 선택해 주세요.';return;}
+  if(!name||!reply){err.textContent='이름과 연락처를 입력해 주세요.';return;}
+  if(!msg){err.textContent='문의 내용을 입력해 주세요.';return;}
+  const subject=`[오자르 문의] ${type} - ${name}`;
+  const body=`문의 종류: ${type}\n이름/업체명: ${name}\n연락처: ${reply}\n\n${msg}`;
+  location.href=`mailto:eaujar.kr@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+});
+</script>
+</body>
+</html>
