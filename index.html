@@ -274,6 +274,8 @@ form{background:#fff;border-radius:var(--r);padding:34px;display:grid;gap:18px;a
 .field textarea{min-height:140px;resize:vertical}
 .field input:focus,.field textarea:focus{outline:none;border-color:var(--ink);background:#fff}
 .err{color:#b3261e;font-size:13px;min-height:18px}
+.err.ok{color:var(--moss)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
 form .btn{font:inherit;font-size:14px;font-weight:500;cursor:pointer;justify-self:end}
 
 /* footer */
@@ -639,8 +641,9 @@ footer .copy{display:flex;justify-content:flex-end;margin-top:40px;font-size:12p
       <label class="field"><span data-en="Name / Company">이름 / 업체명</span><input name="name" autocomplete="name"></label>
       <label class="field"><span data-en="Contact (email or phone)">연락처 (이메일 또는 전화)</span><input name="reply"></label>
       <label class="field"><span data-en="Message">내용</span><textarea name="msg" placeholder="공간, 일정, 수량 등 자세히 적어주실수록 빠르게 안내해 드릴 수 있어요." data-en-placeholder="The more you tell us about the space, schedule and quantity, the faster we can help."></textarea></label>
+      <input class="hp" name="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
       <p class="err" id="err" aria-live="polite"></p>
-      <button class="btn dark" type="submit"><i>→</i><span data-en="Send inquiry">문의 보내기</span></button>
+      <button class="btn dark" type="submit" id="send"><i>→</i><span data-en="Send inquiry">문의 보내기</span></button>
       <p class="wnote" data-en="&lt;b&gt;Stockists · Wholesale&lt;/b&gt;We supply the full range wholesale, including the Eco Brighty series, substrates and hardscape materials. Aquarium, reptile and plant shops and planterior spaces: contact us and we will send our wholesale price list."><b>입점 · 도매 안내</b>에코브라이티 시리즈, 배합토, 하드스케이프 소재 전 제품을 도매로 공급합니다. 아쿠아샵, 파충류샵, 식물샵, 플랜테리어 공간 어디든 문의 주시면 도매 단가표를 보내드립니다.</p>
     </form>
   </div>
@@ -693,18 +696,42 @@ pick('ggrid',6,g=>g.querySelectorAll('.num').forEach((e,i)=>e.textContent=String
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.1});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 
-const form=document.getElementById('form'),err=document.getElementById('err');
-form.addEventListener('input',()=>err.textContent='');
-form.addEventListener('submit',e=>{
+// 문의 메일: Apps Script 웹 앱(site/apps-script/contact.gs)이 eaujar.kr@gmail.com 으로 보냅니다.
+// 주소가 비어 있거나 전송이 끝내 실패하면 방문자의 메일 앱(mailto)으로 넘깁니다.
+const CONTACT_ENDPOINT='https://script.google.com/macros/s/AKfycbzWSsNFoyyit4rAxuL-_cdPktxWsE8kNGFfe_AbyHS2OkXtoml-uZgSAjuUOuwbMv4L/exec';
+const form=document.getElementById('form'),err=document.getElementById('err'),sendBtn=document.getElementById('send');
+let reqKey='',sending=false;
+const say=(t,ok)=>{err.textContent=t;err.classList.toggle('ok',!!ok);};
+form.addEventListener('input',()=>say(''));
+form.addEventListener('submit',async e=>{
   e.preventDefault();
-  const d=new FormData(form),type=d.get('type'),name=(d.get('name')||'').trim(),reply=(d.get('reply')||'').trim(),msg=(d.get('msg')||'').trim();
+  if(sending)return;
   const en=document.documentElement.lang==='en';
-  if(!type){err.textContent=en?'Please choose an inquiry type.':'문의 종류를 선택해 주세요.';return;}
-  if(!name||!reply){err.textContent=en?'Please enter your name and contact.':'이름과 연락처를 입력해 주세요.';return;}
-  if(!msg){err.textContent=en?'Please enter your message.':'문의 내용을 입력해 주세요.';return;}
-  const subject=`[오자르 문의${en?' · EN':''}] ${type} - ${name}`;
-  const body=`문의 종류: ${type}\n이름/업체명: ${name}\n연락처: ${reply}\n\n${msg}`;
-  location.href=`mailto:eaujar.kr@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  const d=new FormData(form),type=d.get('type'),name=(d.get('name')||'').trim(),reply=(d.get('reply')||'').trim(),msg=(d.get('msg')||'').trim();
+  if(!type){say(en?'Please choose an inquiry type.':'문의 종류를 선택해 주세요.');return;}
+  if(!name||!reply){say(en?'Please enter your name and contact.':'이름과 연락처를 입력해 주세요.');return;}
+  if(!msg){say(en?'Please enter your message.':'문의 내용을 입력해 주세요.');return;}
+  const mailto=()=>{
+    const subject=`[오자르 문의${en?' · EN':''}] ${type} - ${name}`;
+    const body=`문의 종류: ${type}\n이름/업체명: ${name}\n연락처: ${reply}\n\n${msg}`;
+    location.href=`mailto:eaujar.kr@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
+  if(!CONTACT_ENDPOINT){mailto();return;}
+  if(!reqKey)reqKey=(crypto.randomUUID?crypto.randomUUID():Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,12));
+  const payload={key:reqKey,type,name,reply,msg,lang:en?'en':'ko',hp:d.get('hp')||''};
+  sending=true;sendBtn.disabled=true;say(en?'Sending…':'보내는 중입니다…',true);
+  let j=null;
+  // 응답이 오류 화면이거나 상태 응답(service)뿐이면 같은 key로 다시 보냅니다. 서버는 같은 key의 메일을 한 번만 보냅니다.
+  for(let i=0;i<3;i++){
+    try{const r=await fetch(CONTACT_ENDPOINT,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});j=await r.json();}catch(x){j=null;}
+    if(j&&(j.sent||(j.ok===false&&j.error)))break;
+    j=null;if(i<2)await new Promise(r=>setTimeout(r,1500));
+  }
+  sending=false;sendBtn.disabled=false;
+  if(j&&j.sent){reqKey='';form.reset();say(en?'Thank you. Your message has been sent, and we will get back to you soon.':'문의가 접수되었습니다. 확인 후 빠르게 연락드리겠습니다.',true);return;}
+  if(j&&j.error==='busy'){say(en?'Too many messages in a short time. Please try again in 10 minutes.':'짧은 시간에 문의가 많이 들어왔습니다. 10분 뒤 다시 시도해 주세요.');return;}
+  say(en?'Could not send. Opening your email app instead.':'전송이 되지 않아 메일 앱으로 연결합니다.');
+  setTimeout(mailto,800);
 });
 </script>
 <!-- Naver Analytics -->
