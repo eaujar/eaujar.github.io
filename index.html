@@ -147,7 +147,7 @@ header:not(.scrolled) .bar .logo{opacity:0;pointer-events:none}
 .works-head .h2{font-size:clamp(26px,3.4vw,46px);margin-top:18px}
 .slices{--H:520px;--g:8px;display:grid;grid-template-columns:repeat(4,1fr);gap:var(--g);height:var(--H);margin-top:56px}
 .slices .s{position:relative;overflow:hidden;border-radius:20px;margin-top:var(--t,0px);height:calc(var(--H) - var(--t,0px) - var(--b,0px))}
-.slices .s img{position:absolute;top:calc(-1 * var(--t,0px));height:var(--H);width:calc(400% + 3 * var(--g));max-width:none;left:calc(var(--i) * -100% - var(--i) * var(--g));object-fit:cover;object-position:center 45%}
+.slices .s img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--p,center)}
 .slice-notes{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:-150px;position:relative}
 .slice-notes div{padding-right:14px}
 .slice-notes h4{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:8px}
@@ -482,21 +482,21 @@ footer .copy{display:flex;justify-content:flex-end;margin-top:40px;font-size:12p
       <h2 class="h2"><span class="g">그 안에 살 생물</span>을 먼저 생각하고,<br>그 생물의 자연을 유리 안에 옮깁니다.</h2>
     </div>
     <div class="slices rv" aria-hidden="true">
-      <div class="s" style="--i:0;--b:24px"><img src="img/viv_slice.jpg" alt=""></div>
-      <div class="s" style="--i:1;--t:18px"><img src="img/viv_slice.jpg" alt=""></div>
-      <div class="s" style="--i:2;--t:32px;--b:10px"><img src="img/viv_slice.jpg" alt=""></div>
-      <div class="s" style="--i:3"><img src="img/viv_slice.jpg" alt=""></div>
+      <div class="s" style="--b:24px;--p:50% 50%"><img src="img/ani_01.jpg" alt=""></div>
+      <div class="s" style="--t:18px;--p:30% 50%"><img src="img/ani_02.jpg" alt=""></div>
+      <div class="s" style="--t:32px;--b:10px;--p:62% 45%"><img src="img/ani_03.jpg" alt=""></div>
+      <div class="s" style="--p:40% 45%"><img src="img/ani_04.jpg" alt=""></div>
     </div>
 
     <div class="gallery">
       <figure class="rv"><img src="img/case_01.jpg" alt="세로형 비바리움 전경" loading="lazy"></figure>
-      <figure class="rv"><img src="img/case_02.jpg" alt="유목 사이의 개구리" loading="lazy"></figure>
-      <figure class="rv"><img src="img/case_03.jpg" alt="유목 위에 붙은 이끼와 양치식물" loading="lazy"></figure>
-      <figure class="rv"><img src="img/case_04.jpg" alt="안개가 내려앉은 비바리움" loading="lazy"></figure>
+      <figure class="rv"><img src="img/animal_01.jpg" alt="유목 위에 앉은 붉은 독화살개구리" loading="lazy"></figure>
+      <figure class="rv"><img src="img/animal_03.jpg" alt="이끼 위의 주황·검정 독화살개구리" loading="lazy"></figure>
       <figure class="rv"><img src="img/case_05.jpg" alt="가로형 비바리움 전경" loading="lazy"></figure>
-      <figure class="rv"><img src="img/case_06.jpg" alt="조명 아래 세로형 비바리움" loading="lazy"></figure>
+      <figure class="rv"><img src="img/case_04.jpg" alt="안개가 내려앉은 비바리움" loading="lazy"></figure>
       <figure class="rv"><img src="img/case_07.jpg" alt="브로멜리아드와 이끼가 자란 비바리움" loading="lazy"></figure>
-      <figure class="rv"><img src="img/case_08.jpg" alt="바닥층과 낙엽" loading="lazy"></figure>
+      <figure class="rv"><img src="img/animal_02.jpg" alt="유목 위의 청록색 독화살개구리 두 마리" loading="lazy"></figure>
+      <figure class="rv"><img src="img/animal_04.jpg" alt="코르크 바크 위의 도마뱀" loading="lazy"></figure>
     </div>
 
     <div class="process">
