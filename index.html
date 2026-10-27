@@ -174,20 +174,19 @@ header:not(.scrolled) .bar .logo{opacity:0;pointer-events:none}
 .band .ov h2{font-size:clamp(36px,5vw,66px);font-weight:600;letter-spacing:-.045em;line-height:1.05;margin-top:0}
 .band .ov p{font-size:14px;color:rgba(255,255,255,.82);max-width:340px;margin-top:22px;line-height:1.65}
 .ggrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
-.gcard{position:relative;overflow:hidden;isolation:isolate;background:#fff;border-radius:22px;padding:24px 24px 22px;display:flex;flex-direction:column;gap:12px;min-height:200px;transition:color .35s}
-.gcard::before{content:"";position:absolute;inset:0;z-index:-2;background:var(--bg-img) center/cover;opacity:0;transform:scale(1.08);transition:opacity .45s,transform .8s}
-.gcard::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(8,14,10,.35) 0%,rgba(8,14,10,.78) 100%);opacity:0;transition:opacity .45s}
-.gcard:hover,.gcard:focus-visible{color:#fff}
-.gcard:hover::before,.gcard:focus-visible::before{opacity:1;transform:scale(1)}
-.gcard:hover::after,.gcard:focus-visible::after{opacity:1}
-.gcard:hover .pill,.gcard:focus-visible .pill{border-color:rgba(255,255,255,.45);color:#fff}
-.gcard:hover .num,.gcard:hover .meta{color:rgba(255,255,255,.8)}
+.gcard{position:relative;overflow:hidden;isolation:isolate;background:#1b241d;color:#fff;border-radius:22px;padding:24px 24px 22px;display:flex;flex-direction:column;gap:12px;min-height:250px}
+.gcard::before{content:"";position:absolute;inset:0;z-index:-2;background:var(--bg-img) center/cover;transition:transform .8s}
+.gcard::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(8,14,10,.42) 0%,rgba(8,14,10,.18) 38%,rgba(8,14,10,.8) 100%);transition:background .45s}
+.gcard:hover::before,.gcard:focus-visible::before{transform:scale(1.06)}
+.gcard:hover::after,.gcard:focus-visible::after{background:linear-gradient(180deg,rgba(8,14,10,.5) 0%,rgba(8,14,10,.3) 38%,rgba(8,14,10,.88) 100%)}
+.gcard .pill{border-color:rgba(255,255,255,.45);color:#fff;background:rgba(8,14,10,.25);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.gcard .num,.gcard .meta{color:rgba(255,255,255,.82)}
 .gcard:hover .arr{background:var(--moss);color:#fff}
 .gcard .top{display:flex;justify-content:space-between;align-items:center}
-.gcard .num{font-size:13px;color:var(--muted)}
-.gcard strong{font-size:18px;font-weight:600;letter-spacing:-.03em;line-height:1.45}
-.gcard .bot{margin-top:auto;display:flex;justify-content:space-between;align-items:center}
-.gcard .arr{width:34px;height:34px;border-radius:50%;background:var(--bg);display:grid;place-items:center;font-size:14px;transition:.25s}
+.gcard .num{font-size:13px}
+.gcard strong{font-size:18px;font-weight:600;letter-spacing:-.03em;line-height:1.45;margin-top:auto;text-shadow:0 1px 12px rgba(0,0,0,.35)}
+.gcard .bot{display:flex;justify-content:space-between;align-items:center}
+.gcard .arr{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.18);display:grid;place-items:center;font-size:14px;transition:.25s}
 
 /* class */
 .klass{position:relative;overflow:hidden}
@@ -333,7 +332,7 @@ footer .copy{display:flex;justify-content:flex-end;margin-top:40px;font-size:12p
   .band .ov{padding:26px}
   .band .shade{background:linear-gradient(180deg,rgba(5,10,7,.85) 0%,rgba(5,10,7,.6) 65%,rgba(5,10,7,.35) 100%)}
   .ggrid{grid-template-columns:1fr}
-  .gcard{min-height:0}
+  .gcard{min-height:200px}
   .kbox .ph{height:240px}
   .kbox .t{padding:20px 22px 26px}
   .timeline li{grid-template-columns:86px 1fr;font-size:14px}
@@ -536,11 +535,11 @@ footer .copy{display:flex;justify-content:flex-end;margin-top:40px;font-size:12p
       <a class="gcard rv" style="--bg-img:url(img/g_01.jpg)" href="https://blog.naver.com/eaujar" target="_blank" rel="noopener"><div class="top"><span class="pill">물</span><span class="num">01</span></div><strong>수돗물, 정수기, RO수… 비바리움에는 어떤 물을 써야 할까?</strong><div class="bot"><span class="meta">비바리움 가이드</span><span class="arr">↗</span></div></a>
       <a class="gcard rv" style="--bg-img:url(img/g_02.jpg)" href="https://blog.naver.com/eaujar" target="_blank" rel="noopener"><div class="top"><span class="pill">습도</span><span class="num">02</span></div><strong>습도계는 80%인데 왜 이끼가 마를까? 습도계 숫자의 함정</strong><div class="bot"><span class="meta">비바리움 가이드</span><span class="arr">↗</span></div></a>
       <a class="gcard rv" style="--bg-img:url(img/g_03.jpg)" href="https://blog.naver.com/eaujar" target="_blank" rel="noopener"><div class="top"><span class="pill">계절</span><span class="num">03</span></div><strong>비바리움에도 계절이 필요할까? 사계절이 아닌 '자연의 리듬'</strong><div class="bot"><span class="meta">비바리움 노트</span><span class="arr">↗</span></div></a>
-      <a class="gcard rv" style="--bg-img:url(img/g_04.jpg)" href="https://blog.naver.com/eaujar/224162073685" target="_blank" rel="noopener"><div class="top"><span class="pill">곰팡이</span><span class="num">04</span></div><strong>비바리움에 곰팡이가 생기는 진짜 이유, 그리고 해결 방법</strong><div class="bot"><span class="meta">비바리움 노트</span><span class="arr">↗</span></div></a>
+      <a class="gcard rv" style="--bg-img:url(img/g_08.jpg)" href="https://blog.naver.com/eaujar/224162073685" target="_blank" rel="noopener"><div class="top"><span class="pill">곰팡이</span><span class="num">04</span></div><strong>비바리움에 곰팡이가 생기는 진짜 이유, 그리고 해결 방법</strong><div class="bot"><span class="meta">비바리움 노트</span><span class="arr">↗</span></div></a>
       <a class="gcard rv" style="--bg-img:url(img/g_05.jpg)" href="https://blog.naver.com/eaujar/224368226378" target="_blank" rel="noopener"><div class="top"><span class="pill">이끼</span><span class="num">05</span></div><strong>이끼가 갈변하는 이유, 모두 같은 원인은 아닙니다</strong><div class="bot"><span class="meta">비바리움 가이드</span><span class="arr">↗</span></div></a>
       <a class="gcard rv" style="--bg-img:url(img/g_06.jpg)" href="https://blog.naver.com/eaujar/224369358936" target="_blank" rel="noopener"><div class="top"><span class="pill">빛</span><span class="num">06</span></div><strong>비바리움 조명 시간, 8시간? 10시간? 정답은 따로 있습니다</strong><div class="bot"><span class="meta">비바리움 노트</span><span class="arr">↗</span></div></a>
-      <a class="gcard rv" style="--bg-img:url(img/g_07.jpg)" href="https://blog.naver.com/eaujar/224174062153" target="_blank" rel="noopener"><div class="top"><span class="pill">구조</span><span class="num">07</span></div><strong>비바리움을 만들 때 꼭 알아야 할 '배수층' 이야기</strong><div class="bot"><span class="meta">비바리움 노트</span><span class="arr">↗</span></div></a>
-      <a class="gcard rv" style="--bg-img:url(img/g_08.jpg)" href="https://blog.naver.com/eaujar/224183712932" target="_blank" rel="noopener"><div class="top"><span class="pill">흙</span><span class="num">08</span></div><strong>물생활에 '물잡이'가 있다면, 비바리움에는 '흙잡이'가 필요하다</strong><div class="bot"><span class="meta">비바리움 노트</span><span class="arr">↗</span></div></a>
+      <a class="gcard rv" style="--bg-img:url(img/g_04.jpg)" href="https://blog.naver.com/eaujar/224174062153" target="_blank" rel="noopener"><div class="top"><span class="pill">구조</span><span class="num">07</span></div><strong>비바리움을 만들 때 꼭 알아야 할 '배수층' 이야기</strong><div class="bot"><span class="meta">비바리움 노트</span><span class="arr">↗</span></div></a>
+      <a class="gcard rv" style="--bg-img:url(img/g_07.jpg)" href="https://blog.naver.com/eaujar/224183712932" target="_blank" rel="noopener"><div class="top"><span class="pill">흙</span><span class="num">08</span></div><strong>물생활에 '물잡이'가 있다면, 비바리움에는 '흙잡이'가 필요하다</strong><div class="bot"><span class="meta">비바리움 노트</span><span class="arr">↗</span></div></a>
       <a class="gcard rv" style="--bg-img:url(img/g_09.jpg)" href="https://blog.naver.com/eaujar/224182970837" target="_blank" rel="noopener"><div class="top"><span class="pill">입문</span><span class="num">09</span></div><strong>비바리움 실패하는 3가지 이유</strong><div class="bot"><span class="meta">비바리움 노트</span><span class="arr">↗</span></div></a>
     </div>
   </div>
